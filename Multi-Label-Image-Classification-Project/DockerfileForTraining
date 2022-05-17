@@ -1,0 +1,17 @@
+# Dockerfile to build custom container for training
+# use PyTorch DLVM as base image
+FROM gcr.io/cloud-aiplatform/training/pytorch-gpu.1-7
+
+WORKDIR /
+
+COPY ./movie_classifier_libraries.txt ./
+
+RUN pip install -r movie_classifier_libraries.txt
+RUN mkdir model
+RUN mkdir images
+# RUN gcsfuse movie-classifier-images-bucket ./images
+# Copies the trainer code to the docker image.
+COPY . .
+
+# Sets up the entry point to invoke the trainer.
+ENTRYPOINT ["python", "-m", "train"]

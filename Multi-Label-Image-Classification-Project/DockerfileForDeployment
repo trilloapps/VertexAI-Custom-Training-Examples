@@ -1,0 +1,17 @@
+FROM python:3.7
+
+WORKDIR /home/model-server/
+
+COPY ./movie_classifier_libraries_deployment.txt /home/model-server/
+
+RUN pip install -r movie_classifier_libraries_deployment.txt
+RUN apt-get update
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+
+ADD . /home/model-server/
+
+RUN mkdir model
+
+RUN python download_model_and_test_df.py
+
+CMD exec gunicorn -b :5000 --max-requests 1 --graceful-timeout 300 -t 600 main:app

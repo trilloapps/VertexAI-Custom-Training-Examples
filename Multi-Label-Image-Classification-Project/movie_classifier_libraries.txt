@@ -1,0 +1,7 @@
+future==0.17.1
+iterative-stratification==0.1.7
+opencv-python==4.5.5.62
+tqdm==4.62.3
+scikit-learn
+pandas
+pillow

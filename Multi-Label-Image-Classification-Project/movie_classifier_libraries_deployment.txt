@@ -1,0 +1,12 @@
+future==0.17.1
+opencv-python==4.5.5.62
+gunicorn==19.9.0
+Flask==2.0.3
+torch==1.6.0
+torchvision==0.7.0
+tqdm==4.62.3
+google-cloud-storage
+fsspec
+scikit-learn
+pandas
+pillow
